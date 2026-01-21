@@ -100,7 +100,7 @@ body {
     flex-direction: row;
     padding: 10px;
     font-size: 16.5px;
-    width: 8%;
+    width: 200px;
     border: 2px solid #CACACA;
     border-radius: 3px;
     justify-content: space-between;
