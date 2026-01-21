@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BlazorCalendar/BlazorCalendar.csproj" Id="cb01742b-a012-412a-9709-fd5b281d1826" />
+  <Project Path="CalendarBackend/CalendarBackend.csproj" />
+</Solution>
