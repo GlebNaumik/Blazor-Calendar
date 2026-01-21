@@ -104,6 +104,7 @@ body {
     border: 2px solid #CACACA;
     border-radius: 3px;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .opened {
@@ -130,6 +131,7 @@ body {
     padding-left: 20px;
     border: 2px solid #505050;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 .button:hover {
@@ -142,6 +144,10 @@ body {
     padding: 5px;
     display: flex;
     justify-content: space-evenly;
+}
+
+.grid-header.button {
+    cursor: pointer;
 }
 
 .grid-month {
