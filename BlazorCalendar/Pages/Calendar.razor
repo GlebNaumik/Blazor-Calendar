@@ -39,63 +39,6 @@
     </div>
 }
 @code {
-    private DateOnly selectedDay = DateOnly.FromDateTime(DateTime.Today);
-    private ImmutableList<CalendarDay> calendar = DateOnly.FromDateTime(DateTime.Today).BuildGridDays();
-    private bool isCalendarOpened = false;
-
-    private void
-    SwitchCalendarState() {
-        isCalendarOpened = !isCalendarOpened;
-    }
-
-    private void
-    SetToday () {
-        selectedDay = DateOnly.FromDateTime(DateTime.Today);
-        calendar = selectedDay.BuildGridDays();
-    }
-
-    private void
-    SetYesterday() {
-        selectedDay = selectedDay.AddDays(-1);
-        calendar = selectedDay.BuildGridDays();   // сначала я подумал, что можно просто calendar = selectedDay.AddDays(-1).BuildGridDays(); , но потом дошло, что так не меняется состояние selectedDay и кнопку получается кликабельна только один раз.
-    }
-
-    private void
-    SetWeekAgo() {
-        selectedDay = selectedDay.AddDays(-7);
-        calendar = selectedDay.BuildGridDays();
-    }
-
-    private void
-    SetMonthAgo() {
-        selectedDay = selectedDay.AddMonths(-1);
-        calendar = selectedDay.BuildGridDays();
-    }
-
-    private void
-    SetNextMonth() {
-        selectedDay = selectedDay.AddMonths(1);
-        calendar = selectedDay.BuildGridDays();
-    }
-
-    private void 
-    SetNextYear() {
-        selectedDay = selectedDay.AddYears(1);
-        calendar = selectedDay.BuildGridDays();
-    }
-    private void
-    SetYearAgo() {
-        selectedDay = selectedDay.AddYears(-1);
-        calendar = selectedDay.BuildGridDays();
-    }
-
-    private void
-    SetDay (CalendarDay selectedDay) {
-        this.selectedDay = selectedDay.Date;
-            calendar = this.selectedDay.BuildGridDays();
-    }
-
     private string
-    SetDayStyle (CalendarDay day) => day.IsCurrentMonth ? (day.IsSelected ? "day day-selected" : "day") : "day day-muted";    // сюда также можно добавить закрытие календаря, чтобы после выбора даты он закрывался. или например добавить проверку на IsCurrentMonth,чтобы предыдущий месяц сначала перестраивал таблицу, а потом уже выбиралась дата вторым кликом.
-
+    SetDayStyle (CalendarDay day) => day.IsCurrentMonth ? (day.IsSelected ? "day day-selected" : "day") : "day day-muted";    // сюда также можно добавить закрытие календаря после выбора даты, или например добавить проверку на IsCurrentMonth,чтобы предыдущий месяц сначала перестраивал таблицу, а потом уже выбиралась дата вторым кликом.
 }
