@@ -1,0 +1,24 @@
+﻿<div class="select-box@(IsToggled.T("__opened"))" @onclick="() => SwitchToggled()">
+    @SelectedDay.ToString("dd MMM yyyy")
+</div>
+    @if (IsToggled) {
+        <div @onclick:stopPropagation="true">                                             
+            <CalendarView Calendar="Calendar" CalendarChanged="OnCalendarChanged" />
+        </div>
+    }
+
+@code {
+    [Parameter] public DateOnly SelectedDay { get; set; }
+    [Parameter] public EventCallback<DateOnly> SelectedDayChanged { get; set; }
+
+    private bool IsToggled { get; set; }
+
+    private void
+    SwitchToggled() => IsToggled = !IsToggled;
+
+    private Calendar Calendar => new Calendar(SelectedDay);
+
+    private void OnCalendarChanged(Calendar newCalendar) {
+        SelectedDayChanged.InvokeAsync(newCalendar.SelectedDay);
+    }
+}

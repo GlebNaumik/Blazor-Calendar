@@ -1,0 +1,15 @@
+﻿@page "/"
+
+<PageTitle>Calendar</PageTitle>
+
+<h1>Calendar</h1>
+
+<CalendarSelectBox SelectedDay="@SelectedDay" SelectedDayChanged="OnSelectedDayChanged" />
+
+@code {
+    private DateOnly SelectedDay = DateOnly.FromDateTime(DateTime.Now);
+
+    private void OnSelectedDayChanged(DateOnly newSelectedDay) {
+        SelectedDay = newSelectedDay;
+    }
+}

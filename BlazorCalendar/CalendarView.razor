@@ -1,0 +1,35 @@
+﻿ <calendar>
+
+     <div class ="calendar__header">
+        <Button Header="Today" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetToday()))" />
+        <Button Header="Yesterday" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetYesterday()))" />
+        <Button Header="Week Ago" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetWeekAgo()))" />
+        <Button Header="Month Ago" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetMonthAgo()))" />
+    </div>
+
+    <div class="calendar__status">
+        <Button Header="◄◄" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetPreviousYear()))" />
+        <Button Header="◄" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetPreviousYear()))" />
+        <div class="calendar__status-text">@Calendar.SelectedDay.ToString("MMMM yyyy")</div>
+        <Button Header="►" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetNextMonth()))" />
+        <Button Header="►►" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetNextYear()))" />
+    </div>
+
+    <div class="calendar__grid">
+        @foreach (var day in Calendar.DisplayedDays) { 
+            <ToggleButton 
+                Header="@day.Date.Day.ToString()"
+                IsToggled="day.IsSelected"
+                CssClass="@(day.IsCurrentMonth ? "" : "another-month")"
+                OnToggled="@(() => HandleChanged(Calendar.SetDay(day)))" />
+        }
+    </div>
+
+</calendar>
+
+@code {
+
+    [Parameter] public Calendar Calendar { get; set; }
+    [Parameter] public EventCallback<Calendar> CalendarChanged { get; set; }
+    void HandleChanged(Calendar newCalendar) => CalendarChanged.InvokeAsync(newCalendar);
+}
