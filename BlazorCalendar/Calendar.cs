@@ -12,11 +12,8 @@ CalendarDay(
 public record
 Calendar(
     DateOnly SelectedDay) {
-        public DateOnly SelectedMonthStartDay => SelectedDay.CalculateMonthStart();
-        public ImmutableList<CalendarDay> DisplayedDays => SelectedMonthStartDay.BuildVisibleDays();
+        public ImmutableList<CalendarDay> DisplayedDays => SelectedDay.BuildVisibleDays();
 }
-
-
 
 public static class
 CalendarFunctions {

@@ -8,8 +8,5 @@
     [Parameter] public string Header { get; set; }
     [Parameter] public string CssClass { get; set; }
 
-    void HandleClick(){
-        if (!IsToggled)
-            OnToggled.InvokeAsync(IsToggled);
-    }
+    void HandleClick() => OnToggled.InvokeAsync(IsToggled);
 }

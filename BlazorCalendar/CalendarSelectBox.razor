@@ -1,5 +1,6 @@
 ﻿<div class="select-box@(IsToggled.T("__opened"))" @onclick="() => SwitchToggled()">
-    @SelectedDay.ToString("dd MMM yyyy")
+    <div>@SelectedDay.ToString("dd MMM yyyy")</div>
+    <div class="select-box__bottom-arrow">▼</div>
 </div>
     @if (IsToggled) {
         <div @onclick:stopPropagation="true">                                             
