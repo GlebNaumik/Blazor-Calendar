@@ -1,0 +1,8 @@
+﻿<popup class="@IsOpened.T("popup_opened")">
+    @ChildContent
+</popup>
+
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public bool IsOpened { get; set; }
+}

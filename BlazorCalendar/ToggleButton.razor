@@ -1,4 +1,4 @@
-﻿<button class="toggle-button @CssClass @IsToggled.T("toggled")" @onclick="HandleClick">  
+﻿<button class="toggle-button @Class @IsToggled.T("toggled")" @onclick="HandleClick">  
     @Header
 </button>
 
@@ -6,7 +6,6 @@
     [Parameter] public bool IsToggled { get; set; }
     [Parameter] public EventCallback<bool> OnToggled { get; set; }
     [Parameter] public string Header { get; set; }
-    [Parameter] public string CssClass { get; set; }
 
     void HandleClick() => OnToggled.InvokeAsync(IsToggled);
 }

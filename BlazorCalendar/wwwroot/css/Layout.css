@@ -1,0 +1,13 @@
+﻿space-between-panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+row { 
+    display: flex;
+    flex-direction: row;
+}
+
+.gap_1x { gap: 8px; }
+.gap_half { gap: 4px; }
+.centered {align-items: center;}

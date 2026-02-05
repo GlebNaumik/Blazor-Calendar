@@ -1,35 +1,51 @@
-﻿ <calendar>
+﻿<calendar class="@Class">
 
-     <div class ="calendar__header">
-        <Button Header="Today" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetToday()))" />
-        <Button Header="Yesterday" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetYesterday()))" />
-        <Button Header="Week Ago" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetWeekAgo()))" />
-        <Button Header="Month Ago" CssClass="calendar__head-button" OnClick="@(() => HandleChanged(Calendar.SetMonthAgo()))" />
+    <row class="calendar__top-buttons">
+        <Button Header="Today" OnClick="@(() => HandleSelectedDateChanged(DateTime.Now.Date))" />
+        <Button Header="Yesterday" OnClick="@(() => HandleSelectedDateChanged(DateTime.Now.Date.AddDays(-1)))" />
+        <Button Header="Week Ago" OnClick="@(() => HandleSelectedDateChanged(DateTime.Now.Date.AddDays(-7)))" />
+        <Button Header="Month Ago" OnClick="@(() => HandleSelectedDateChanged(DateTime.Now.Date.AddMonths(-1)))" />
+    </row>
+
+    <SpaceBetweenPanel Class="calendar__header">
+    <row>
+        <IconButton Icon="Icons.ArrowDoubleLeft" OnClick="@(() => SelectedMonthStartDate = SelectedMonthStartDate.AddYears(-1))" />
+        <IconButton Icon="Icons.ArrowLeft" OnClick="@(() => SelectedMonthStartDate = SelectedMonthStartDate.AddMonths(-1))" />
+    </row>
+        <div class="calendar__status-text">@SelectedMonthStartDate.ToString("MMMM yyyy")</div>
+    <row>
+        <IconButton Icon="Icons.ArrowRight" OnClick="@(() => SelectedMonthStartDate = SelectedMonthStartDate.AddMonths(1))" />
+        <IconButton Icon="Icons.ArrowDoubleRight" OnClick="@(() => SelectedMonthStartDate = SelectedMonthStartDate.AddYears(1))"/>
+    </row>
+    </SpaceBetweenPanel>
+
+    <div class="calendar__days-grid">
+    @foreach (var day in SelectedMonthStartDate.CalculateGridStart().GetDaysWithinWeek(weeksCount: 6)) {
+    <ToggleButton Header="@day.Date.Day.ToString()"
+                    Class="@IsCurrentMonth(day).F("another-month")"
+                    IsToggled="SelectedDate == day"
+                    OnToggled="@(() => HandleSelectedDateChanged(day))" />
+    }
     </div>
-
-    <div class="calendar__status">
-        <Button Header="◄◄" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetPreviousYear()))" />
-        <Button Header="◄" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetPreviousYear()))" />
-        <div class="calendar__status-text">@Calendar.SelectedDay.ToString("MMMM yyyy")</div>
-        <Button Header="►" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetNextMonth()))" />
-        <Button Header="►►" CssClass="calendar__grid-button" OnClick="@(() => HandleChanged(Calendar.SetNextYear()))" />
-    </div>
-
-    <div class="calendar__grid">
-        @foreach (var day in Calendar.DisplayedDays) { 
-            <ToggleButton 
-                Header="@day.Date.Day.ToString()"
-                IsToggled="day.IsSelected"
-                CssClass="@(day.IsCurrentMonth ? "" : "another-month")"
-                OnToggled="@(() => HandleChanged(Calendar.SetDay(day)))" />
-        }
-    </div>
-
 </calendar>
 
 @code {
+    [Parameter] public DateTime SelectedDate { get; set; }
+    [Parameter] public EventCallback<DateTime> SelectedDateChanged { get; set; }
 
-    [Parameter] public Calendar Calendar { get; set; }
-    [Parameter] public EventCallback<Calendar> CalendarChanged { get; set; }
-    void HandleChanged(Calendar newCalendar) => CalendarChanged.InvokeAsync(newCalendar);
+    public bool IsCurrentMonth(DateTime date) => date.Month == SelectedMonthStartDate.Month;
+
+    public DateTime SelectedMonthStartDate { get; set; }
+
+    protected override void OnParametersSet() {
+        SelectedMonthStartDate = new DateTime(
+            SelectedDate.Year,
+            SelectedDate.Month,
+            1);
+    }
+
+    public void
+    HandleSelectedDateChanged(DateTime date) {
+        SelectedDateChanged.InvokeAsync(date);
+    }
 }

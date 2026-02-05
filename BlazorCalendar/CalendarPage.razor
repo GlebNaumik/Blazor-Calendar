@@ -4,12 +4,12 @@
 
 <h1>Calendar</h1>
 
-<CalendarSelectBox SelectedDay="@SelectedDay" SelectedDayChanged="OnSelectedDayChanged" />
+<CalendarSelectBox SelectedDate="@SelectedDate" SelectedDateChanged="OnSelectedDateChanged"/>
 
 @code {
-    private DateOnly SelectedDay = DateOnly.FromDateTime(DateTime.Now);
+    private DateTime SelectedDate = DateTime.Now;
 
-    private void OnSelectedDayChanged(DateOnly newSelectedDay) {
-        SelectedDay = newSelectedDay;
+    private void OnSelectedDateChanged(DateTime newSelectedDate) {
+        SelectedDate = newSelectedDate;
     }
 }

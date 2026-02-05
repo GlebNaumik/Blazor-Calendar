@@ -1,25 +1,24 @@
-﻿<div class="select-box@(IsToggled.T("__opened"))" @onclick="() => SwitchToggled()">
-    <div>@SelectedDay.ToString("dd MMM yyyy")</div>
-    <div class="select-box__bottom-arrow">▼</div>
-</div>
-    @if (IsToggled) {
-        <div @onclick:stopPropagation="true">                                             
-            <CalendarView Calendar="Calendar" CalendarChanged="OnCalendarChanged" />
-        </div>
+﻿<calendar-select-box class="@(IsOpened.T("calendar-select-box__opened"))">
+    <SelectBoxButton OnClick="SwitchToggled">
+        @SelectedDate.ToString("dd MMM yyyy")
+    </SelectBoxButton>
+    @if (IsOpened) {
+        <Popup IsOpened=IsOpened>                                          
+            <CalendarView SelectedDate="@SelectedDate" SelectedDateChanged="OnSelectedDateChanged" />
+        </Popup>
     }
+</calendar-select-box>
 
 @code {
-    [Parameter] public DateOnly SelectedDay { get; set; }
-    [Parameter] public EventCallback<DateOnly> SelectedDayChanged { get; set; }
+    [Parameter] public DateTime SelectedDate { get; set; }
+    [Parameter] public EventCallback<DateTime> SelectedDateChanged { get; set; }
 
-    private bool IsToggled { get; set; }
+    private bool IsOpened { get; set; }
 
     private void
-    SwitchToggled() => IsToggled = !IsToggled;
+    SwitchToggled() => IsOpened = !IsOpened;
 
-    private Calendar Calendar => new Calendar(SelectedDay);
-
-    private void OnCalendarChanged(Calendar newCalendar) {
-        SelectedDayChanged.InvokeAsync(newCalendar.SelectedDay);
+    private void OnSelectedDateChanged(DateTime date) {
+        SelectedDateChanged.InvokeAsync(date);
     }
 }

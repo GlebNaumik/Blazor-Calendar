@@ -1,10 +1,8 @@
-﻿<button class ="@Class" @onclick = "OnClick">    
-    @Header 
+﻿<select-box-button @onclick="OnClick">
     @ChildContent
-</button>
-
-@code { 
-    [Parameter] public string Header { get; set; }
+    <IconButton Icon="Icons.ArrowDown"/>
+</select-box-button>
+@code {
     [Parameter] public RenderFragment ChildContent { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
 }

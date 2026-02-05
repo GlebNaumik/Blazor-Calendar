@@ -1,0 +1,8 @@
+﻿<Button class="icon-button" OnClick="@OnClick">
+    <Icon Value="@Icon"/>
+</Button>
+
+@code {
+    [Parameter] public Icons Icon { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

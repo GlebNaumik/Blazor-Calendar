@@ -1,0 +1,21 @@
+﻿@switch (Value)
+{
+    case Icons.ArrowDown: <ArrowDownIcon Class="@Class"/> 
+        break;
+    case Icons.ArrowLeft: <ArrowLeftIcon Class="@Class"/>                    
+        break;
+    case Icons.ArrowRight: <ArrowRightIcon Class="@Class"/>                    
+        break;
+    case Icons.ArrowUp: <ArrowUpIcon Class="@Class"/>                    
+        break;
+    case Icons.ArrowDoubleLeft: <ArrowDoubleLeftIcon Class="@Class"/>
+        break;
+    case Icons.ArrowDoubleRight: <ArrowDoubleRightIcon Class="@Class" />
+        break;
+    default: break;
+}
+
+@code {
+    [Parameter] public Icons Value { get; set; }
+
+}

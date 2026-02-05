@@ -1,21 +1,32 @@
-﻿.calendar__head-button {
-    padding: 5px 11px;
-    background-color: #2b2b2b;
-    font-size: 14px;
-    font-family: "Segoe UI", sans-serif;
-    font-weight: 400;
-    opacity: 0.75;
-    color: #ffffff;
+﻿button {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    color: inherit;
+    cursor: pointer;
     border-radius: 4px;
-    border: 1px solid #505050;
+    align-items: center;
+    justify-content: center;
 }
 
-.calendar__grid-button {
-    background-color: #2b2b2b;
-    font-size: 10px;
-    transform: scaleX(0.5) scaleY(0.8);
-    color: #ffffff;
-    text-align: center;
-    border: 0px solid #505050;
-    letter-spacing: -2px;
+.icon-button {
+    font-size: 8px;
+    border: 0px
+}
+
+.toggle-button {
+    border: 0px;
+}
+
+.toggle-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-button.toggled {
+    background-color: #00A961;
+    color: white;
+}
+
+.another-month {
+    opacity: 0.25;
 }

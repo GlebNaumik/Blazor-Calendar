@@ -1,0 +1,17 @@
+﻿calendar {}
+
+.calendar__days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.calendar__top-buttons{
+    justify-content: space-evenly;
+    margin: 8px;
+}
+
+.calendar__header {
+   margin: 8px;
+}
