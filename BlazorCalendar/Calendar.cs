@@ -10,9 +10,6 @@ CalendarFunctions {
     public static DateTime
     CalculateMonthStart(this DateTime day) => new DateTime(day.Year, day.Month, 1);
 
-    public static DateTime
-    CalculateMonthEnd(this DateTime day) => day.CalculateMonthStart().AddMonths(1).AddDays(-1);
-
     public static int
     CalculateStartOffset(this DateTime day) => (((int)day.CalculateMonthStart().DayOfWeek) + 6) % 7;
 

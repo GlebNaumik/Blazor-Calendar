@@ -18,7 +18,8 @@
         <IconButton Icon="Icons.ArrowDoubleRight" OnClick="@(() => SelectedMonthStartDate = SelectedMonthStartDate.AddYears(1))"/>
     </row>
     </SpaceBetweenPanel>
-
+    
+    <div class="test">
     <div class="calendar__days-grid">
     @foreach (var day in SelectedMonthStartDate.CalculateGridStart().GetDaysWithinWeek(weeksCount: 6)) {
     <ToggleButton Header="@day.Date.Day.ToString()"
@@ -26,6 +27,7 @@
                     IsToggled="SelectedDate == day"
                     OnToggled="@(() => HandleSelectedDateChanged(day))" />
     }
+    </div>
     </div>
 </calendar>
 

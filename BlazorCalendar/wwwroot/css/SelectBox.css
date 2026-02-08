@@ -1,7 +1,12 @@
-﻿calendar-select-box{ 
-    border: 1px solid rgba(0, 0, 0, 0.75);
+﻿select-box-button {
+    display: flex;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
+    justify-content: space-between;
+    width: 150px;
 }
+
 
 .calendar-select-box__opened{
     background-color: black;

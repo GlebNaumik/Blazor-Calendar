@@ -16,16 +16,18 @@
 
 .toggle-button {
     border: 0px;
+    aspect-ratio: 1/1;
+    width: 30px;
 }
 
-.toggle-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+    .toggle-button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 
-.toggle-button.toggled {
-    background-color: #00A961;
-    color: white;
-}
+    .toggle-button.toggled {
+        background-color: #00A961;
+        color: white;
+    }
 
 .another-month {
     opacity: 0.25;
